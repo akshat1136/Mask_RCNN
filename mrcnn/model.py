@@ -2154,6 +2154,7 @@ class MaskRCNN():
         """Gets the model ready for training. Adds losses, regularization, and
         metrics. Then calls the Keras compile() function.
         """
+		tf.compat.v1.disable_eager_execution()
         # Optimizer object
         optimizer = keras.optimizers.SGD(
             lr=learning_rate, momentum=momentum,
@@ -2167,9 +2168,8 @@ class MaskRCNN():
             "mrcnn_class_loss", "mrcnn_bbox_loss", "mrcnn_mask_loss"]
         for name in loss_names:
             layer = self.keras_model.get_layer(name)
-            '''if layer.output in self.keras_model.losses:
-                continue'''
-            tf.cond(layer.output in self.keras_model.losses, continue)
+            if layer.output in self.keras_model.losses:
+                continue
             loss = (
                 tf.reduce_mean(layer.output, keepdims=True)
                 * self.config.LOSS_WEIGHTS.get(name, 1.))

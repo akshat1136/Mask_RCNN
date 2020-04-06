@@ -2154,7 +2154,7 @@ class MaskRCNN():
         """Gets the model ready for training. Adds losses, regularization, and
         metrics. Then calls the Keras compile() function.
         """
-		tf.compat.v1.disable_eager_execution()
+        tf.compat.v1.disable_eager_execution()
         # Optimizer object
         optimizer = keras.optimizers.SGD(
             lr=learning_rate, momentum=momentum,

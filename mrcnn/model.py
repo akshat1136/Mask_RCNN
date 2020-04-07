@@ -18,10 +18,10 @@ import multiprocessing
 import numpy as np
 import tensorflow as tf
 import keras
-import tensorflow.keras.backend as K
-import tensorflow.keras.layers as KL
+import keras.backend as K
+import keras.layers as KL
 import keras.engine as KE
-import tensorflow.keras.models as KM
+import keras.models as KM
 
 from mrcnn import utils
 
@@ -2337,8 +2337,8 @@ class MaskRCNN():
 
         # Callbacks
         callbacks = [
-            keras.callbacks.TensorBoard(log_dir=self.log_dir,
-                                        histogram_freq=0, write_graph=True, write_images=False),
+            #keras.callbacks.TensorBoard(log_dir=self.log_dir,
+            #                            histogram_freq=0, write_graph=True, write_images=False),
             keras.callbacks.ModelCheckpoint(self.checkpoint_path,
                                             verbose=0, save_weights_only=True),
         ]
